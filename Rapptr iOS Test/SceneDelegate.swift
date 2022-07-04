@@ -21,7 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let menuViewController = MenuViewController(nibName: "MenuViewController", bundle: nil)
         let navigationController = UINavigationController(rootViewController: menuViewController)
                 
-        let navBar = navigationController.navigationBar
+        setUpNavigationBar(navBar: navigationController.navigationBar)
+        
+        window.rootViewController = navigationController
+        
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+    
+    func setUpNavigationBar(navBar: UINavigationBar) {
 
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.configureWithOpaqueBackground()
@@ -39,12 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navBar.compactScrollEdgeAppearance = compactAppearance
         }
         
-        window.rootViewController = navigationController
-        
-        self.window = window
-        window.makeKeyAndVisible()
     }
-    
     
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -81,7 +84,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension UIColor {
     convenience init(hex: String) {
         let scanner = Scanner(string: hex)
-        scanner.scanLocation = 0
+        scanner.locale = 0
         
         var rgbValue: UInt64 = 0
         
